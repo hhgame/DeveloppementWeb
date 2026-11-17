@@ -6,24 +6,22 @@ import java.time.format.FormatStyle;
 import java.util.Locale;
 
 public class Evenement {
-    private String id;
+    private static long lastId = 0;
+    private long id;
     private LocalDate date;
     private String titre;
     private String lieu;
 
 
-    public Evenement(String id, String date, String titre, String lieu) {
-        this.id = id;
+    public Evenement(String date, String titre, String lieu) {
+        this.id = lastId;
+        Evenement.lastId++;
         this.titre = titre;
         this.lieu = lieu;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
                 .withLocale(Locale.getDefault());
 
         this.date = LocalDate.parse(date, formatter);
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setTitre(String titre) {
@@ -41,7 +39,7 @@ public class Evenement {
         this.lieu = lieu;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
