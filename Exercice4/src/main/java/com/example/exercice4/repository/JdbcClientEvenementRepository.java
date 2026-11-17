@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Primary
 public class JdbcClientEvenementRepository implements EvenementRepository {
 
     private final JdbcClient jdbc;
@@ -51,7 +50,7 @@ public class JdbcClientEvenementRepository implements EvenementRepository {
                     .update(cle);
             event.setId(cle.getKeyAs(Long.class));
         } else {
-            jdbc.sql("UPDATE evenement SET titre = ?, auteur = ?, annee = ? WHERE id = ?")
+            jdbc.sql("UPDATE evenement SET titre = ?, lieu = ?, date = ? WHERE id = ?")
                     .params(event.getTitre(), event.getLieu(), event.getDate(), event.getId())
                     .update();
         }

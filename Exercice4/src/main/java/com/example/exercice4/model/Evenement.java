@@ -1,63 +1,62 @@
 package com.example.exercice4.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
+@Entity
 public class Evenement {
-    private static long lastId = 0;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate date;
     private String titre;
     private String lieu;
 
+    public Evenement() {}
 
-    public Evenement(String date, String titre, String lieu) {
-        this.id = lastId;
-        Evenement.lastId++;
+    public Evenement(String titre, String lieu, String dateStr) {
         this.titre = titre;
         this.lieu = lieu;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-                .withLocale(Locale.getDefault());
-
-        this.date = LocalDate.parse(date, formatter);
+        this.date = parseDate(dateStr);
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    private LocalDate parseDate(String dateStr) {
+        if (dateStr == null) return null;
+
+        try {
+            return LocalDate.parse(dateStr);
+        } catch (Exception e1) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.FRENCH);
+                return LocalDate.parse(dateStr, formatter);
+            } catch (Exception e2) {
+                throw new IllegalArgumentException("Format de date non reconnu : " + dateStr);
+            }
+        }
     }
 
-    public void setDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-                .withLocale(Locale.getDefault());
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-        this.date = LocalDate.parse(date, formatter);
-    }
+    public String getTitre() { return titre; }
+    public void setTitre(String titre) { this.titre = titre; }
 
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
-    }
+    public String getLieu() { return lieu; }
+    public void setLieu(String lieu) { this.lieu = lieu; }
 
-    public Long getId() {
-        return id;
-    }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
 
-    public String getDate() {
+    public String getDateFormatee() {
+        if (this.date == null) return "";
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
                 .withLocale(Locale.getDefault());
-        return date.format(formatter);
-    }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public String getLieu() {
-        return lieu;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return this.date.format(formatter);
     }
 }

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Primary
 public class JdbcEvenementRepository implements EvenementRepository {
 
     private final DataSource dataSource;

@@ -11,9 +11,9 @@ public class InMemoryEvenementRepository implements EvenementRepository {
     private long sequence = 0;
 
     public InMemoryEvenementRepository() {
-        enregistrer(new Evenement("12 novembre 2026", "Event1", "Quelque part"));
-        enregistrer(new Evenement("2 juin 2027", "Event2", "où"));
-        enregistrer(new Evenement("26 février 2028", "Event3", "ici"));
+        enregistrer(new Evenement( "Event1", "Quelque part", "12 novembre 2026"));
+        enregistrer(new Evenement( "Event2", "où","2 juin 2027"));
+        enregistrer(new Evenement("Event3", "ici", "26 février 2028"));
     }
 
     public List<Evenement> findAll() {

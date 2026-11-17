@@ -29,8 +29,8 @@
         <tbody>
         <tr th:each="event : ${events}">
             <td th:text="${event.titre}">Titre</td>
-            <td th:text="${event.auteur}">Lieu</td>
-            <td th:text="${event.annee}">Date</td>
+            <td th:text="${event.lieu}">Lieu</td>
+            <td th:text="${event.date}">Date</td>
             <td>
                 <div class="actions">
                     <a th:href="@{/events/{id}/modifier(id=${event.id})}">Modifier</a>
