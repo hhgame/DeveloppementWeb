@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class InMemoryEvenementRepository {
+public class InMemoryEvenementRepository implements EvenementRepository {
     private final Map<Long, Evenement> events = new HashMap<>();
     private long sequence = 0;
 

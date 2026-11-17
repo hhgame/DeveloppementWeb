@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${event.id == null} ? 'Nouvel évènement' : 'Modifier un évènement'">Evènement</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<header>
+    <h1>Gestion des évènements</h1>
+</header>
+<main>
+    <div class="barre">
+        <h2 th:text="${event.id == null} ? 'Nouvel évènnement' : 'Modifier un évènement'">Evènement</h2>
+    </div>
+
+    <form class="formulaire"
+          th:action="${event.id == null} ? @{/events} : @{/events/{id}(id=${event.id})}"
+          th:object="${event}" method="post">
+        <div class="champ">
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" th:field="*{titre}"/>
+        </div>
+        <div class="champ">
+            <label for="lieu">Lieu</label>
+            <input type="text" id="lieu" th:field="*{lieu}"/>
+        </div>
+        <div class="champ">
+            <label for="date">Date</label>
+            <input type="date" id="date" th:field="*{date}"/>
+        </div>
+        <div class="boutons">
+            <button type="submit">Enregistrer</button>
+            <a class="bouton bouton-secondaire" th:href="@{/events}">Annuler</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

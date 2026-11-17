@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class Evenement {
     private static long lastId = 0;
-    private long id;
+    private Long id;
     private LocalDate date;
     private String titre;
     private String lieu;
@@ -39,7 +39,7 @@ public class Evenement {
         this.lieu = lieu;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -55,5 +55,9 @@ public class Evenement {
 
     public String getLieu() {
         return lieu;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

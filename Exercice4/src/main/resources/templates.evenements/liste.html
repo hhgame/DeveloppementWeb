@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Evènement</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<header>
+    <h1>Gestion des évènements</h1>
+</header>
+<main>
+    <div class="barre">
+        <h2>Catalogue</h2>
+        <a class="bouton" th:href="@{/events/nouveau}">Ajouter un évènement</a>
+    </div>
+
+    <p class="message" th:if="${message}" th:text="${message}">Message</p>
+
+    <table th:unless="${#lists.isEmpty(events)}">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Lieu</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event : ${events}">
+            <td th:text="${event.titre}">Titre</td>
+            <td th:text="${event.auteur}">Lieu</td>
+            <td th:text="${event.annee}">Date</td>
+            <td>
+                <div class="actions">
+                    <a th:href="@{/events/{id}/modifier(id=${event.id})}">Modifier</a>
+                    <form th:action="@{/events/{id}/supprimer(id=${event.id})}" method="post"
+                          onsubmit="return confirm('Supprimer cet évènement ?');">
+                        <button type="submit" class="lien-danger">Supprimer</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p class="vide" th:if="${#lists.isEmpty(events)}">Aucun évènement pour le moment.</p>
+</main>
+</body>
+</html>
