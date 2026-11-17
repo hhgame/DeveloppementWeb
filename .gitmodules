@@ -1,0 +1,3 @@
+[submodule "injection-de-dependance"]
+	path = injection-de-dependance
+	url = https://gitlab.com/inane.mohammed/injection-de-dependance
