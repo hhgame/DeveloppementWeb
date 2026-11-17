@@ -1,3 +1,6 @@
 [submodule "injection-de-dependance"]
 	path = injection-de-dependance
 	url = https://gitlab.com/inane.mohammed/injection-de-dependance
+[submodule "gestion-livres"]
+	path = gestion-livres
+	url = https://gitlab.com/inane.mohammed/gestion-livres
