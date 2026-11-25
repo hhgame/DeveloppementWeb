@@ -18,4 +18,5 @@ public interface EvenementRepository extends JpaRepository<Evenement, Long> {
 
     public long count();*/
     public List<Evenement> findByLieuOrderByDateAsc(String lieu) ;
+    boolean existsByPlannerId(Long plannerId);
 }

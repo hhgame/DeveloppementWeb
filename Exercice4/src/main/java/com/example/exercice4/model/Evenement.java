@@ -1,5 +1,6 @@
 package com.example.exercice4.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,9 +15,15 @@ public class Evenement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String titre;
     private String lieu;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "planner_id")
+    private Planner planner;
+
 
     public Evenement() {}
 
@@ -58,5 +65,17 @@ public class Evenement {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
                 .withLocale(Locale.getDefault());
         return this.date.format(formatter);
+    }
+
+    public boolean isTitleValid() {
+        return this.titre != null && this.titre != "";
+    }
+
+    public boolean isLieuValid() {
+        return this.lieu != null && this.lieu != "";
+    }
+
+    public Planner getPlanner() {
+        return this.planner;
     }
 }
