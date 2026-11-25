@@ -3,11 +3,7 @@ import com.example.exercice4.model.Evenement;
 import com.example.exercice4.service.EvenementService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -21,8 +17,13 @@ public class EvenementController {
     }
 
     @GetMapping
-    public String liste(Model model) {
-        model.addAttribute("events", eventService.lister());
+    public String liste(@RequestParam(value = "lieu", required = false) String lieu, Model model) {
+        if(lieu != null) {
+            model.addAttribute("events", eventService.listerParLieu(lieu));
+        }
+        else {
+            model.addAttribute("events", eventService.lister());
+        }
         return "evenements/liste";
     }
 

@@ -4,7 +4,7 @@ import com.example.exercice4.model.Evenement;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-
+/*
 @Repository
 public class InMemoryEvenementRepository implements EvenementRepository {
     private final Map<Long, Evenement> events = new HashMap<>();
@@ -46,4 +46,4 @@ public class InMemoryEvenementRepository implements EvenementRepository {
         events.put(event.getId(), event);
         return event;
     }
-}
+}*/

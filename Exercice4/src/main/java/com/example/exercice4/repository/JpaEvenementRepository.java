@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/*
 @Repository
 @Primary
 @Transactional
@@ -56,4 +57,4 @@ public class JpaEvenementRepository implements EvenementRepository {
         return entityManager.createQuery("SELECT COUNT(l) FROM Evenement l", Long.class)
                 .getSingleResult();
     }
-}
+}*/

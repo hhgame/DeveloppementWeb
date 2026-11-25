@@ -42,5 +42,9 @@ public class EvenementService {
         }
         eventRepository.deleteById(id);
     }
+
+    public List<Evenement> listerParLieu(String lieu) {
+        return eventRepository.findByLieuOrderByDateAsc(lieu);
+    }
 }
 
